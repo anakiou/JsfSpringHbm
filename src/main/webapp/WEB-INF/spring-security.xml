@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/security" xmlns:beans="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="http://www.springframework.org/schema/security 
+	http://www.springframework.org/schema/security/spring-security-3.2.xsd
+	http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<http auto-config="true" access-denied-page="/login.xhtml">
+		<intercept-url pattern="/login.xhtml" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+		<intercept-url pattern="/pages/*" access="ROLE_ADMIN,ROLE_USER"/>
+		<intercept-url pattern="/pages/admin/*" access="ROLE_ADMIN"/>
+		<anonymous />
+		<session-management session-fixation-protection="migrateSession">
+			<concurrency-control error-if-maximum-exceeded="true" max-sessions="5" />
+		</session-management>
+		<form-login login-page="/login.xhtml" 
+			login-processing-url="/j_spring_security_check" 
+			default-target-url="/pages/index.xhtml"
+			always-use-default-target="false" />
+		<logout invalidate-session="true" delete-cookies="true"
+			logout-success-url="/login.xhtml" />
+	</http>
+	
+
+	<authentication-manager alias="authenticationManager">
+		<authentication-provider>
+			<user-service>
+				<user name="user" authorities="ROLE_USER" password="user" />
+				<user name="admin" authorities="ROLE_ADMIN" password="admin" />
+			</user-service>
+		</authentication-provider>
+	</authentication-manager>
+
+
+	<global-method-security pre-post-annotations="enabled"
+		secured-annotations="enabled" jsr250-annotations="enabled" />
+
+</beans:beans>

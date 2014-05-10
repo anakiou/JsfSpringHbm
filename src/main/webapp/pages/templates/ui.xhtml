@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+ xmlns:h="http://java.sun.com/jsf/html"
+ xmlns:sec="http://www.springframework.org/security/tags"
+ xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core">
+
+<f:view contentType="text/html" id="fview">
+
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <title>JSF-Spring-Hibernate</title>
+ <ui:debug rendered="#{initParam['javax.faces.PROJECT_STAGE'] eq 'Development'}"
+  hotkey="0" />
+ <f:metadata>
+  <ui:insert name="metadata" />
+ </f:metadata>
+
+ <h:head>
+  <h:outputStylesheet library="css" name="main.css" />
+  <h:outputScript library="js" name="main.js" />
+  <p:dialog modal="true" widgetVar="statusDialogVar" showHeader="false" draggable="false"
+   closable="false" resizable="false" visible="false" position="center"
+   maximizable="false" minimizable="false">
+   <p:graphicImage value="/resources/ajax-loader.gif" />
+  </p:dialog>
+
+  <p:ajaxStatus onstart="statusDialogVar.show();" onsuccess="statusDialogVar.hide();" />
+ </h:head>
+
+ <h:body onload="statusDialogVar.hide();">
+  <p:growl id="growl" widgetVar="growlVar" showDetail="true" life="5000" />
+
+  <p:layout fullPage="true" resizeTitle="resize" style="background-color:#FFFFFF;">
+
+   <p:layoutUnit styleClass="layoutUnitCenter" position="center">
+
+    <ui:insert name="content" />
+
+   </p:layoutUnit>
+
+  </p:layout>
+
+ </h:body>
+
+</f:view>
+</html>

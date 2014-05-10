@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head><title>JSF Spring Hibernate</title></h:head>
+<h:body>
+	<div  align="center" style="">
+	<p:growl id="growl" showDetail="true" life="5000" />
+		<h:form	id="loginFormId" prependId="false">
+			<p:layout fullPage="true">
+					<p:layoutUnit position="center" header="#{msgs.lblAppName}">
+                     <p:spacer height="100" />
+        				<p:panelGrid columns="2" cellpadding="5">
+        				<f:facet name="header">Login</f:facet>
+									<h:outputLabel for="j_username" value="#{msgs.lblUsername}:"></h:outputLabel>
+									<p:inputText value="#{securityBean.userName}"
+									        id="j_username" required="true" requiredMessage="#{msgs.errEnterUserName}" label="username" autocomplete="off"></p:inputText>
+
+									<h:outputLabel for="j_password" value="#{msgs.lblPassword}:"></h:outputLabel>
+									<p:password value="#{securityBean.password}"
+									        id="j_password" required="true" requiredMessage="#{msgs.errEnterPassword}" label="password" autocomplete="off"></p:password>
+
+			                     <f:facet name ="footer">
+								<p:commandButton id="btnLogin" value="#{msgs.btnSubmit}" action="#{securityBean.doLogin}" ajax="false"
+								styleClass="btnLoginPanel" update=":growl" icon="ui-icon-circle-check"></p:commandButton>
+			                     </f:facet>
+						</p:panelGrid>
+				</p:layoutUnit>
+			</p:layout>
+		</h:form>
+	</div>
+</h:body>
+</html>

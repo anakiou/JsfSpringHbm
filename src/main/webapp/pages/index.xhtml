@@ -1,0 +1,26 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/tags"
+	template="/pages/templates/ui.xhtml">
+
+	<ui:define name="metadata">
+	</ui:define>
+	<ui:define name="content">
+
+
+
+		<h:form id="form" prependId="false">
+ 
+      <p:outputLabel value="#{indexBean.greeting}"></p:outputLabel>
+      	 <p:button id="home" value="#{msgs.btnHome}" icon="ui-icon-home"
+        outcome="/pages/index.xhtml" />
+     
+      <p:commandButton id="logout" value="#{msgs.btnLogOut}" icon="ui-icon-power"
+        ajax="false" action="#{securityBean.logout}" />
+
+		</h:form>
+	</ui:define>
+</ui:composition>

@@ -28,7 +28,6 @@ public class MobileViewHandler extends ViewHandlerWrapper {
 		if (userAgent != null && accept != null) {
 			UserAgentInfo agent = new UserAgentInfo(userAgent, accept);
 			if (agent.isMobileDevice()) {
-				System.out.println("this is a mobile device");
 				return "PRIMEFACES_MOBILE";
 			}
 		}
